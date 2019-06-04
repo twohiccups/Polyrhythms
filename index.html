@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script></head>
+
+<body>
+        <input id="time1" type="number" min="1" max="100" step="1">
+        <input id="time2" type="number" min="1" max="100" step="1">
+        <button onclick="start()">Create Polyrythm</button>
+
+    <div class="slidecontainer">
+        <input id="tempo" type="range" min="30" max="600" value="100" class="slider">
+    </div>
+    <div class="slidecontainer">
+        <button id="stop" type="button">Stop</button></div>
+    
+    <svg id="canvas" width="800" height="800">
+    </svg>
+    
+
+</body>
+    <script src="polyrithm.js"></script>
+    
+</html>
