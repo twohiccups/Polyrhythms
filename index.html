@@ -4,12 +4,75 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script></head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/50f9e90ff6.js"></script>
+        <link rel="stylesheet" href="style.css">
+    
+
 
 <body>
-        <input id="time1" type="number" min="1" max="100" step="1">
-        <input id="time2" type="number" min="1" max="100" step="1">
-        <button onclick="start()">Create Polyrythm</button>
+
+    <div class="container my-3">
+        <div class="row">  
+        </div>
+        
+        <div class="row mb-3  justify-content-center">
+            <div class="col-2 toggleplus border">
+                <i id="timek" class="fas fa-plus-square fa-4x"></i>
+            </div>
+            <div class="col-2 toggleplus">
+                <i class="fas fa-plus-square  fa-4x"></i>
+            </div>
+            <div class="col-2 toggleplus">
+                <i class="fas fa-minus-square  fa-4x"></i>
+            </div>
+            <div class="col-2 toggleplus">
+                <i class="fas fa-minus-square  fa-4x"></i>
+            </div>
+              <div class="col-2 toggleplus">
+                <i class="fas fa-minus-square  fa-4x"></i>
+            </div>
+            <div class="col-2 toggleplus">
+                <i class="fas fa-minus-square  fa-4x"></i>
+            </div>
+        </div>
+        
+        <div class="row mb-3">
+            <div class="col-2">
+                <input id="time1" class="form-control" type="number" min="1" max="100" step="1">
+            </div>
+            <div class="col-2">
+                <input id="time2" class="form-control" type="number" min="1" max="100" step="1">
+            </div>
+            <div class="col-2">
+                <input id="time3" class="form-control" disabled type="number" min="1" max="100" step="1">
+            </div>
+            <div class="col-2">
+                <input id="time4" class="form-control" disabled type="number" min="1" max="100" step="1">
+            </div>
+              <div class="col-2">
+                <input id="time5" class="form-control" disabled type="number" min="1" max="100" step="1">
+            </div>
+             <div class="col-2">
+                <input id="time5" class="form-control" disabled type="number" min="1" max="100" step="1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button id="create" class="rounded btn-block py-4" onclick="start()">Create Polyrythm</button>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col justify-content-center">
+                  <svg id="canvas" width="800" height="800"></svg>
+            </div>
+        </div>
+        
+</div>
+    
 
     <div class="slidecontainer">
         <input id="tempo" type="range" min="30" max="600" value="100" class="slider">

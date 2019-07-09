@@ -4,6 +4,7 @@ const centerX = 400;
 const centerY = 400;
 
 
+
 const audio = [
     new Audio('drum.mp3'),
     new Audio('drum2.mp3'),
@@ -21,7 +22,9 @@ const miniOff = 8;
 var rhythms = [];
 var low;
 
-
+var rs = [
+    {}
+]
 
 function Beat(radius, isOn, position) {
     this.selected = false;
@@ -173,3 +176,22 @@ function start() {
 } 
 
 
+
+$(".toggleplus").on("click", function() {
+//    alert ($('.toggleplus').index(this))
+    var index = $('.toggleplus').index(this)
+    $(".fas").eq(index).toggleClass("fa-plus-square fa-minus-square");
+//    if () {
+//        $(".form-control").eq(index).
+//        }
+//        $('#el').prop('disabled', function(i, v) { return !v; });
+            alert($(".form-control").eq(0).val())
+
+    alert($(".form-control").eq(1).val() == '')
+
+})
+
+
+function add(x) {
+    alert(x)
+}
