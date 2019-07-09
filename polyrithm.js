@@ -22,9 +22,7 @@ const miniOff = 8;
 var rhythms = [];
 var low;
 
-var rs = [
-    {}
-]
+
 
 function Beat(radius, isOn, position) {
     this.selected = false;
@@ -54,6 +52,7 @@ function Beat(radius, isOn, position) {
 function Rhythm (radius, time, low, color) {
     this.radius = radius;
     this.circle;
+    this.sound = true;
     this.time = time;
     this.segs = [];
     this.init = function() {
@@ -170,25 +169,65 @@ function reset() {
 function start() {
     reset();
     createPolyrhythm([$("#time1").val(), $("#time2").val()]);
-    loop();
-    
-    
+    loop();  
 } 
 
 
+$(".tpicon").on("click", function() {
+    
+    var index = $('.tpicon').index(this);
+    $(".tpicon").eq(index).toggleClass("fa-plus-square fa-minus-square");
 
-$(".toggleplus").on("click", function() {
-//    alert ($('.toggleplus').index(this))
-    var index = $('.toggleplus').index(this)
-    $(".fas").eq(index).toggleClass("fa-plus-square fa-minus-square");
-//    if () {
-//        $(".form-control").eq(index).
-//        }
-//        $('#el').prop('disabled', function(i, v) { return !v; });
-            alert($(".form-control").eq(0).val())
+    if ($(".tpicon").eq(index).hasClass("fa-plus-square")) {
+        $(".form-control").eq(index).prop('disabled', false);
+    
+    }
+    else {
+        $(".form-control").eq(index).prop('disabled', true);
+        $(".form-control").val('')
+    }
+})
 
-    alert($(".form-control").eq(1).val() == '')
+$(".mute").on("click", function() {
+    
+    var index = $('.mute').index(this);
+    $(".mute").eq(index).toggleClass("fa-volume-mute fa-drum");
 
+    if ($(".mute").eq(index).hasClass("fa-drum")) {
+        // mute()
+    
+    }
+    else {
+       // unmute()
+    }
+})
+
+$(".rotate").on("click", function() {
+    
+    var index = $('.rotate').index(this);
+    $(".mute").eq(index).toggleClass("fa-volume-mute fa-drum");
+
+    if ($(".mute").eq(index).hasClass("fa-drum")) {
+        // mute()
+    
+    }
+    else {
+       // unmute()
+    }
+})
+
+$(".rotatecc").on("click", function() {
+    
+    var index = $('.mute').index(this);
+    $(".mute").eq(index).toggleClass("fa-volume-mute fa-drum");
+
+    if ($(".mute").eq(index).hasClass("fa-drum")) {
+        // mute()
+    
+    }
+    else {
+       // unmute()
+    }
 })
 
 
