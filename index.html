@@ -4,136 +4,221 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script></head>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
     <script src="https://kit.fontawesome.com/50f9e90ff6.js"></script>
-        <link rel="stylesheet" href="style.css">
-    
+    <link rel="stylesheet" href="style.css">
+
+
 
 
 <body>
 
-    <div class="container my-3">   
+
+    <div class="container my-3">
         <div class="row mb-3 justify-content-center">
+            <div class="col-2">
+                <div class="row my-1">
+                    <div class="col">
+                        <i class="fas fa-plus-square fa-4x tpicon"></i>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col">
+                        <i class="fas fa-drum fa-4x mute"></i>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col">
+                        <div class="form-group">
+                            <select   class="form-control-sm fullWidth instruments" id="exampleFormControlSelect2">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col">
+                        <i class="fas fa-undo-alt fa-4x"></i>
+                        <i class="fas fa-redo-alt fa-4x"></i>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col">
+                        <input id="time1" class="form-control" type="number" min="1" max="100" step="1">
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="row my-1">
+                    <div class="col">
+                        <i class="fas fa-plus-square fa-4x tpicon"></i>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col">
+                        <i class="fas fa-drum fa-4x mute"></i>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control-sm fullWidth instruments" id="exampleFormControlSelect2">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col">
+                        <i class="fas fa-undo-alt fa-4x"></i>
+                        <i class="fas fa-redo-alt fa-4x"></i>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col">
+                        <input id="time1" class="form-control" type="number" min="1" max="100" step="1">
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="row my-1">
+                    <div class="col">
+                        <i class="fas fa-plus-square fa-4x tpicon"></i>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col">
+                        <i class="fas fa-drum fa-4x mute"></i>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control-sm instruments fullWidth" id="exampleFormControlSelect2">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col">
+                        <i class="fas fa-undo-alt fa-4x"></i>
+                        <i class="fas fa-redo-alt fa-4x"></i>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col">
+                        <input id="time1" class="form-control" type="number" min="1" max="100" step="1">
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="row my-1">
+                    <div class="col">
+                        <i class="fas fa-plus-square fa-4x tpicon"></i>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col">
+                        <i class="fas fa-drum fa-4x mute"></i>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control-sm instruments fullWidth" id="exampleFormControlSelect2">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col">
+                        <i class="fas fa-undo-alt fa-4x"></i>
+                        <i class="fas fa-redo-alt fa-4x"></i>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col">
+                        <input id="time1" class="form-control" type="number" min="1" max="100" step="1">
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="row my-1">
+                    <div class="col">
+                        <i class="fas fa-plus-square fa-4x tpicon"></i>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col">
+                        <i class="fas fa-drum fa-4x mute"></i>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control-sm fullWidth instruments" id="exampleFormControlSelect2">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col">
+                        <i class="fas fa-undo-alt fa-4x"></i>
+                        <i class="fas fa-redo-alt fa-4x"></i>
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col">
+                        <input id="time1" class="form-control" type="number" min="1" max="100" step="1">
+                    </div>
+                </div>
+            </div>
             
-            <div class="col-2">
-                <i class="fas fa-plus-square fa-4x tpicon"></i>
-            </div>
-            <div class="col-2">
-                <i class="fas fa-plus-square fa-4x tpicon"></i>
-            </div>
-            <div class="col-2">
-                <i class="fas fa-minus-square fa-4x tpicon"></i>
-            </div>
-            <div class="col-2">
-                <i class="fas fa-minus-square fa-4x tpicon"></i>
-            </div>
-              <div class="col-2">
-                <i class="fas fa-minus-square fa-4x tpicon"></i>
-            </div>
-            <div class="col-2">
-                <i class="fas fa-minus-square fa-4x tpicon"></i>
-            </div>
+
         </div>
-        
-        
-        <div class="row mb-3  justify-content-center">
-            <div class="col-2 ">
-                <i class="fas fa-drum fa-4x mute"></i>
-            </div>
-            <div class="col-2 ">
-                <i class="fas fa-drum fa-4x mute"></i>
-            </div>
-            <div class="col-2 ">
-                <i class="fas fa-drum fa-4x mute"></i>
-            </div>
-              <div class="col-2 ">
-                <i class="fas fa-drum fa-4x mute"></i>
-            </div>
-            <div class="col-2">
-                <i class="fas fa-drum  fa-4x mute"></i>
-            </div>
-             <div class="col-2 border">
-                <i id="" class="fas fa-volume-mute fa-4x mute"></i>
-            </div>
-        </div>
-        
-        <div class="row mb-3  justify-content-center">
-            <div class="col-2 toggleplus border">
-                 <i class="fas fa-undo-alt fa-4x"></i>
-                 <i class="fas fa-redo-alt fa-4x"></i>
-            </div>
-            <div class="col-2 toggleplus">
-                 <i class="fas fa-undo-alt fa-4x"></i>
-                 <i class="fas fa-redo-alt fa-4x"></i>
-            </div>
-            <div class="col-2 toggleplus">
-                <i class="fas fa-undo-alt fa-4x"></i>
-                <i class="fas fa-redo-alt fa-4x"></i>
-            </div>
-            <div class="col-2 toggleplus">
-                <i class="fas fa-undo-alt fa-4x"></i>
-                <i class="fas fa-redo-alt fa-4x"></i>
-            </div>
-              <div class="col-2 toggleplus">
-                <i class="fas fa-undo-alt fa-4x"></i>
-                <i class="fas fa-redo-alt fa-4x"></i>
-            </div>
-            <div class="col-2 toggleplus">
-                <i class="fas fa-undo-alt fa-4x"></i>
-                <i class="fas fa-redo-alt fa-4x"></i>
-            </div>
-        </div>
-        
-        <div class="row mb-3">
-            <div class="col-2">
-                <input id="time1" class="form-control" type="number" min="1" max="100" step="1">
-            </div>
-            <div class="col-2">
-                <input id="time2" class="form-control" type="number" min="1" max="100" step="1">
-            </div>
-            <div class="col-2">
-                <input id="time3" class="form-control" disabled type="number" min="1" max="100" step="1">
-            </div>
-            <div class="col-2">
-                <input id="time4" class="form-control" disabled type="number" min="1" max="100" step="1">
-            </div>
-              <div class="col-2">
-                <input id="time5" class="form-control" type="number" min="1" max="100" step="1">
-            </div>
-             <div class="col-2">
-                <input id="time5" class="form-control" type="number" min="1" max="100" step="1">
-            </div>
-        </div>
-        
-        
         <div class="row">
             <div class="col">
-                <button id="create" class="rounded btn-block py-4" onclick="start()">Create Polyrythm</button>
+                <button id="create" class="rounded btn-block py-4">Create Polyrythm</button>
             </div>
         </div>
-        
+
         <div class="row justify-content-center">
             <div class="col justify-content-center">
-                  <svg id="canvas" width="800" height="800"></svg>
+                <svg id="canvas" width="1000" height="1000"></svg>
             </div>
         </div>
-        
-</div>
-    
+
+    </div>
+
+
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown button
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+    </div>
 
     <div class="slidecontainer">
         <input id="tempo" type="range" min="30" max="600" value="100" class="slider">
     </div>
     <div class="slidecontainer">
         <button id="stop" type="button">Stop</button></div>
-    
+
     <svg id="canvas" width="800" height="800">
     </svg>
-    
+
 
 </body>
-    <script src="polyrithm.js"></script>
-    
+<script src="instruments.js"></script>
+<script src="polyrithm.js"></script>
+
 </html>
