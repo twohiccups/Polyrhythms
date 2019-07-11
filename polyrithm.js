@@ -19,8 +19,13 @@ function makeAudio(x) {
     return new Audio(audiopath + audioFiles[x]);
 }
 
+Beat.prototype.setOn = function() {
+    this.setAttribute('r',  miniOff );
+}
+
 function Beat(radius, isOn, position) {
     this.selected = false;
+    
     var attrs = {
         cx: centerX - radius * Math.sin(2*position*Math.PI),
         cy: centerY - radius * Math.cos(2*position*Math.PI),
@@ -29,13 +34,14 @@ function Beat(radius, isOn, position) {
         'stroke': beatStroke,
         fill: beatFill
     }
+    
     this.miniCircle = makeSVG("circle", attrs);  
     this.miniCircle.isOn = isOn;
     $("#canvas").append(this.miniCircle);
     
     this.miniCircle.addEventListener("click", function() {
         if (this.isOn) {
-            this.setAttribute('r',  miniOff );
+            this.setAttribute('r',  miniOff);        
         }
         else {
             this.setAttribute('r', miniOn);
@@ -43,7 +49,23 @@ function Beat(radius, isOn, position) {
         this.isOn = !this.isOn;
     });       
 }
-// audio
+
+Beat.prototype.setOn = function() {
+    this.miniCircle.isOn = true;
+    this.miniCircle.setAttribute('r',  miniOn); 
+}
+
+Beat.prototype.setOff = function() {
+    this.miniCircle.isOn = false;
+    this.miniCircle.setAttribute('r',  miniOff);
+}
+
+function makeSVG(tag, attrs) {
+    var el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (var k in attrs) 
+        el.setAttribute(k, attrs[k]);
+    return el;
+}
 
 
 function RhythmRep (radius, low, time) {
@@ -57,7 +79,7 @@ function RhythmRep (radius, low, time) {
             r:radius,
             'stroke-width':7,
             'stroke':'black',
-            fill:'rgb(234,255,255)'
+            fill:'rgb(255,255,234)'
     };
     
     //here
@@ -75,8 +97,6 @@ function RhythmRep (radius, low, time) {
             new Beat(this.radius, isOn, i / low)
         );  
     }
-    
-    
 }
 
 function Rhythm (radius, time, low, audio, muted) {
@@ -84,18 +104,39 @@ function Rhythm (radius, time, low, audio, muted) {
     this.audio = makeAudio(audio);
     this.muted = muted;
     this.time = time;
-    this.rep = new RhythmRep(radius, low, time);
-    this.rotate = function() {}
-    this.rotatecc = function() {}
-        
+    this.rep = new RhythmRep(radius, low, time);        
 }
 
-function makeSVG(tag, attrs) {
-    var el = document.createElementNS('http://www.w3.org/2000/svg', tag);
-    for (var k in attrs) 
-        el.setAttribute(k, attrs[k]);
-    return el;
+Rhythm.prototype.rotate = function() {
+    var first = this.rep.segs[0].miniCircle.isOn;
+    
+    for (i = 0; i < this.rep.segs.length - 1; i++) {
+        if (this.rep.segs[i+1].miniCircle.isOn) {
+            this.rep.segs[i].setOn();
+        }
+        else this.rep.segs[i].setOff();
+    }
+    if (first) {
+        this.rep.segs[this.rep.segs.length - 1].setOn();
+    }
+    else this.rep.segs[this.rep.segs.length - 1].setOff();
+    
 }
+
+Rhythm.prototype.rotatecc = function() {
+    var last = this.rep.segs[this.rep.segs.length - 1].miniCircle.isOn;
+    for (i = this.rep.segs.length - 1; i > 0; i--) {
+        if (this.rep.segs[i-1].miniCircle.isOn) {
+            this.rep.segs[i].setOn();
+        }
+        else this.rep.segs[i].setOff();
+    }
+    if (last) {
+        this.rep.segs[0].setOn();
+    }
+    else this.rep.segs[0].setOff();
+}
+
 
 
 function createPolyrhythm(values) {
@@ -138,9 +179,6 @@ function gcd(x, y) {
 function lcm(x, y) {
     return x * y / gcd(x, y);
 }
-
-
-
 
 
 var count;
@@ -244,28 +282,13 @@ $(".mute").on("click", function() {
 $(".rotate").on("click", function() {
     
     var index = $('.rotate').index(this);
-    $(".mute").eq(index).toggleClass("fa-volume-mute fa-drum");
-
-    if ($(".mute").eq(index).hasClass("fa-drum")) {
-        // rotate()
-    }
-    else {
-       // rotate()
-    }
+    rhythms[index].rotate();
 })
 
 $(".rotatecc").on("click", function() {
     
-    var index = $('.mute').index(this);
-    $(".mute").eq(index).toggleClass("fa-volume-mute fa-drum");
-
-    if ($(".mute").eq(index).hasClass("fa-drum")) {
-        // rotatecc()
-    
-    }
-    else {
-       // rotatecc()
-    }
+    var index = $('.rotatecc').index(this);
+    rhythms[index].rotatecc();
 })
 
 
@@ -278,7 +301,7 @@ $(".instruments").on('change', function () {
     var index = $(".instruments").index(this);
     
     rhythms[index].audio = makeAudio(
-        'drum'
+        $(".instruments").eq(index).val()
     );
 });
 
