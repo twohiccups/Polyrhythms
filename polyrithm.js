@@ -2,7 +2,6 @@ const minimumRad = 260;
 const radIncr = 65;
 const centerX = $("#canvas").attr("width")/2;
 const centerY = $("#canvas").attr("height")/2;
-
 const beatFill = 'black'
 const beatStroke = 'indigo'
 const beatStrokeWidth = 4;
@@ -13,19 +12,7 @@ var rhythms = [];
 var low;
 
 
-function makeAudio(x) {
-    console.log(x)
-    console.log(audiopath + audioFiles[x])
-    return new Audio(audiopath + audioFiles[x]);
-}
-
-Beat.prototype.setOn = function() {
-    this.setAttribute('r',  miniOff );
-}
-
 function Beat(radius, isOn, position) {
-    this.selected = false;
-    
     var attrs = {
         cx: centerX - radius * Math.sin(2*position*Math.PI),
         cy: centerY - radius * Math.cos(2*position*Math.PI),
@@ -137,6 +124,12 @@ Rhythm.prototype.rotatecc = function() {
     else this.rep.segs[0].setOff();
 }
 
+Rhythm.prototype.clear = function() {
+    this.rep.segs.forEach(function(s) {
+        s.setOff();
+    })
+}
+
 
 
 function createPolyrhythm(values) {
@@ -157,28 +150,20 @@ function createPolyrhythm(values) {
     }
 }
 
+
 function adjustSizes(low) {
+    
+    if (rhythms.length > 3) {
+    }
+    if (low > 50) {
+        
+    }
     const minimumRad = 260;
     const radIncr = 65;
     const miniOn = 13;
     const miniOff = 8; 
-    
-    
 }
 
-function gcd(x, y) {
-    var temp;
-    while (y) {
-        temp = y;
-        y = x % y;
-        x = temp;
-    }
-    return x;
-}
-
-function lcm(x, y) {
-    return x * y / gcd(x, y);
-}
 
 
 var count;
@@ -195,22 +180,7 @@ function update() {
     count++; 
     count = count % low;
 }
-
 var interval;
-
-
- $('#tempo').change(function () {
-        clearInterval(interval);
-        interval = setInterval(update, $(this).val());
-    });
-
-    $('#tempo').on('input', function () {
-        $(this).trigger('change');
-    });
-
-    $('#stop').click(function () {
-        clearInterval(interval);
-    });
 
 
 function loop() {
@@ -220,7 +190,6 @@ function loop() {
 
 
 function setTempo() {
-    ////
 }
 
 function reset() {
@@ -250,6 +219,21 @@ $("#create").on("click", function(){
     
 });
 
+
+$('#tempo').change(function () {
+        clearInterval(interval);
+        interval = setInterval(update, $(this).val());
+    });
+
+    $('#tempo').on('input', function () {
+        $(this).trigger('change');
+    });
+
+    $('#stop').click(function () {
+        clearInterval(interval);
+    });
+
+
 $(".tpicon").on("click", function() {
     
     var index = $('.tpicon').index(this);
@@ -264,6 +248,8 @@ $(".tpicon").on("click", function() {
         $(".form-control").eq(index).val('')
     }
 })
+
+
 
 $(".mute").on("click", function() {
     
@@ -285,16 +271,17 @@ $(".rotate").on("click", function() {
     rhythms[index].rotate();
 })
 
+$(".delete").on("click", function() {
+    
+    var index = $('.delete').index(this);
+    rhythms[index].clear();
+})
+
 $(".rotatecc").on("click", function() {
     
     var index = $('.rotatecc').index(this);
     rhythms[index].rotatecc();
 })
-
-
-function add(x) {
-    alert(x)
-}
 
 
 $(".instruments").on('change', function () {

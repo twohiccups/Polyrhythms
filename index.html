@@ -9,7 +9,7 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf3x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
     <script src="https://kit.fontawesome.com/50f9e90ff6.js"></script>
@@ -19,53 +19,22 @@
 
 
 <body>
-    
-    
+
+
     <div class="container my-3">
-        <div class="row mb-3 justify-content-center">
+        <div class="row mb-3 justify-content-center text-center">
             <div class="col-2">
-                <div class="row my-1">
+                <div class="row">
                     <div class="col">
-                        <i class="fas fa-plus-square fa-4x tpicon"></i>
+                        <i class="fas fa-plus-square fa-3x tpicon"></i>
                     </div>
                 </div>
-                <div class="row my-1">
+                <div class="row">
                     <div class="col">
-                        <i class="fas fa-drum fa-4x mute"></i>
+                        <i class="fas fa-drum fa-3x mute"></i>
                     </div>
                 </div>
-                <div class="row my-1">
-                    <div class="col">
-                        <div class="form-group">
-                            <select   class="form-control-sm fullWidth instruments" id="exampleFormControlSelect2">
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row my-1">
-                    <div class="col">
-                        <i class="fas fa-undo-alt fa-4x rotatecc"></i>
-                        <i class="fas fa-redo-alt fa-4x rotate"></i>
-                    </div>
-                </div>
-                <div class="row my-1">
-                    <div class="col">
-                        <input id="time1" class="form-control" type="number" min="1" max="100" step="1">
-                    </div>
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="row my-1">
-                    <div class="col">
-                        <i class="fas fa-plus-square fa-4x tpicon"></i>
-                    </div>
-                </div>
-                <div class="row my-1">
-                    <div class="col">
-                        <i class="fas fa-drum fa-4x mute"></i>
-                    </div>
-                </div>
-                <div class="row my-1">
+                <div class="row">
                     <div class="col">
                         <div class="form-group">
                             <select class="form-control-sm fullWidth instruments" id="exampleFormControlSelect2">
@@ -73,92 +42,35 @@
                         </div>
                     </div>
                 </div>
-                <div class="row my-1">
+                <div class="row">
                     <div class="col">
-                        <i class="fas fa-undo-alt fa-4x rotatecc"></i>
-                        <i class="fas fa-redo-alt fa-4x rotate"></i>
+                        <i class="fas fa-undo-alt fa-3x rotatecc"></i>
+                        <i class="fas fa-redo-alt fa-3x rotate"></i>
                     </div>
                 </div>
-                <div class="row my-1">
+                <div class="row">
                     <div class="col">
                         <input id="time1" class="form-control" type="number" min="1" max="100" step="1">
                     </div>
                 </div>
-            </div>
-            <div class="col-2">
-                <div class="row my-1">
+                <div class="row">
                     <div class="col">
-                        <i class="fas fa-minus-square fa-4x tpicon"></i>
-                    </div>
-                </div>
-                <div class="row my-1">
-                    <div class="col">
-                        <i class="fas fa-drum fa-4x mute"></i>
-                    </div>
-                </div>
-                <div class="row my-1">
-                    <div class="col">
-                        <div class="form-group">
-                            <select class="form-control-sm instruments fullWidth" id="exampleFormControlSelect2">
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row my-1">
-                    <div class="col">
-                        <i class="fas fa-undo-alt fa-4x rotatecc"></i>
-                        <i class="fas fa-redo-alt fa-4x rotate"></i>
-                    </div>
-                </div>
-                <div class="row my-1">
-                    <div class="col">
-                        <input id="time1" class="form-control" type="number" min="1" max="100" step="1" disabled>
+                        <i class="fas fa-trash-alt fa-3x delete"></i>
                     </div>
                 </div>
             </div>
             <div class="col-2">
-                <div class="row my-1">
+                <div class="row">
                     <div class="col">
-                        <i class="fas fa-minus-square fa-4x tpicon"></i>
+                        <i class="fas fa-plus-square fa-3x tpicon"></i>
                     </div>
                 </div>
-                <div class="row my-1">
+                <div class="row">
                     <div class="col">
-                        <i class="fas fa-drum fa-4x mute"></i>
+                        <i class="fas fa-drum fa-3x mute"></i>
                     </div>
                 </div>
-                <div class="row my-1">
-                    <div class="col">
-                        <div class="form-group">
-                            <select class="form-control-sm instruments fullWidth" id="exampleFormControlSelect2">
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row my-1">
-                    <div class="col">
-                        <i class="fas fa-undo-alt fa-4x rotatecc"></i>
-                        <i class="fas fa-redo-alt fa-4x rotate"></i>
-                    </div>
-                </div>
-                <div class="row my-1">
-                    <div class="col">
-                        <input id="time1" class="form-control" type="number" min="1" max="100" step="1" disabled>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="row my-1">
-                    <div class="col">
-                        <i class="fas fa-minus-square fa-4x tpicon"></i>
-                    </div>
-                </div>
-                <div class="row my-1">
-                    <div class="col">
-                        <i class="fas fa-drum fa-4x mute"></i>
-                    </div>
-                </div>
-                <div class="row my-1">
+                <div class="row">
                     <div class="col">
                         <div class="form-group">
                             <select class="form-control-sm fullWidth instruments" id="exampleFormControlSelect2">
@@ -166,29 +78,142 @@
                         </div>
                     </div>
                 </div>
-                <div class="row my-1">
+                <div class="row">
                     <div class="col">
-                        <i class="fas fa-undo-alt fa-4x rotatecc"></i>
-                        <i class="fas fa-redo-alt fa-4x rotate"></i>
+                        <i class="fas fa-undo-alt fa-3x rotatecc"></i>
+                        <i class="fas fa-redo-alt fa-3x rotate"></i>
                     </div>
                 </div>
-                <div class="row my-1">
+                <div class="row">
                     <div class="col">
-                        <input id="time1" class="form-control" type="number" min="1" max="100" step="1" disabled>
+                        <input id="time1" class="form-control" type="number" min="1" max="100" step="1">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <i class="fas fa-trash-alt fa-3x delete"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="row">
+                    <div class="col">
+                        <i class="fas fa-plus-square fa-3x tpicon"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <i class="fas fa-drum fa-3x mute"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control-sm fullWidth instruments" id="exampleFormControlSelect2">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <i class="fas fa-undo-alt fa-3x rotatecc"></i>
+                        <i class="fas fa-redo-alt fa-3x rotate"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <input id="time1" class="form-control" type="number" min="1" max="100" step="1">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <i class="fas fa-trash-alt fa-3x delete"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="row">
+                    <div class="col">
+                        <i class="fas fa-plus-square fa-3x tpicon"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <i class="fas fa-drum fa-3x mute"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control-sm fullWidth instruments" id="exampleFormControlSelect2">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <i class="fas fa-undo-alt fa-3x rotatecc"></i>
+                        <i class="fas fa-redo-alt fa-3x rotate"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <input id="time1" class="form-control" type="number" min="1" max="100" step="1">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <i class="fas fa-trash-alt fa-3x delete"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="row">
+                    <div class="col">
+                        <i class="fas fa-plus-square fa-3x tpicon"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <i class="fas fa-drum fa-3x mute"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control-sm fullWidth instruments" id="exampleFormControlSelect2">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <i class="fas fa-undo-alt fa-3x rotatecc"></i>
+                        <i class="fas fa-redo-alt fa-3x rotate"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <input id="time1" class="form-control" type="number" min="1" max="100" step="1">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <i class="fas fa-trash-alt fa-3x delete"></i>
                     </div>
                 </div>
             </div>
             
 
+
         </div>
-        <div class="row">
+        <div class="row mb-1">
             <div class="col">
                 <button id="create" class="rounded btn-block py-4">Create Polyrythm</button>
             </div>
         </div>
-
-        <div class="row justify-content-center">
-            <div class="col justify-content-center">
+        <div class="row text-center m-1">
+            <div class="col">
                 <svg id="canvas" width="1000" height="1000"></svg>
             </div>
         </div>
@@ -218,6 +243,7 @@
 
 
 </body>
+<script src="utils.js"></script>
 <script src="instruments.js"></script>
 <script src="polyrithm.js"></script>
 

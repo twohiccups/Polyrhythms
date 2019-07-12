@@ -19,3 +19,7 @@ var audiopath = "samples/"
 Object.keys(audioFiles).forEach(function(key) {
     $(".instruments").append("<option>"+ key + "</option>")
 });
+
+function makeAudio(x) {
+    return new Audio(audiopath + audioFiles[x]);
+}

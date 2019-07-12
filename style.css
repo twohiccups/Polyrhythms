@@ -1,5 +1,16 @@
+body {
+    background: rgb(154,220,244);
+    background: linear-gradient(90deg, rgba(154,220,244,0.3547618876652223) 0%, rgba(255,248,232,1) 100%); 
+}
+
 #create {
     width = 100%;
+    font-family: 'courier';
+    font-weight: 600;
+    font-size: 2rem;
+    background: rgb(255,224,134);
+    background: linear-gradient(0deg, rgba(255,224,134,1) 0%, rgba(255,249,244,1) 100%);
+
 }
 
 .fa-plus-square {
@@ -7,5 +18,20 @@
 }
 
 .fa-minus-square {
-    color: #BB3333
+    color: #BB3333;
+}
+
+
+.fullWidth {
+    width: 100%;
+}
+
+.row {
+    margin-bottom: inherit;
+    margin-top: inherit;
+}
+
+.col-2 {
+    margin-bottom: inherit;
+    margin-top: inherit;
 }
