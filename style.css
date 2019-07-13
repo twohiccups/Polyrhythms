@@ -26,6 +26,9 @@ body {
     width: 100%;
 }
 
+#tempo {
+    height: 100%;
+}
 .row {
     margin-bottom: inherit;
     margin-top: inherit;

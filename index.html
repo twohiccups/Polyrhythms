@@ -15,7 +15,7 @@
     <script src="https://kit.fontawesome.com/50f9e90ff6.js"></script>
     <link rel="stylesheet" href="style.css">
 
-
+</head>
 
 
 <body>
@@ -203,10 +203,25 @@
                     </div>
                 </div>
             </div>
-            
-
-
         </div>
+        
+        <div class="row">
+            <div class="col-1 text-center">
+                 <i class="fas fa-3x fa-angle-right"></i>
+            </div>
+            <div class="col-10 text-center">
+                    <input id="tempo" class="fullWidth" type="range" min="30" max="600" value="100" class="slider">
+            </div>
+            <div class="col-1 text-center">
+                <i class="fas  fa-3x fa-angle-double-right"></i>
+            </div>
+        </div>
+      
+        
+        
+        
+        
+        
         <div class="row mb-1">
             <div class="col">
                 <button id="create" class="rounded btn-block py-4">Create Polyrythm</button>
@@ -217,26 +232,15 @@
                 <svg id="canvas" width="1000" height="1000"></svg>
             </div>
         </div>
-
-    </div>
-
-
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown button
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+        <div class="row text-center">
+            <div class="col">
+                <button id="stop" type="button">Stop</button>
+            </div>
         </div>
-    </div>
 
-    <div class="slidecontainer">
-        <input id="tempo" type="range" min="30" max="600" value="100" class="slider">
     </div>
-    <div class="slidecontainer">
-        <button id="stop" type="button">Stop</button></div>
+    
+
 
     <svg id="canvas" width="800" height="800">
     </svg>
