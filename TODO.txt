@@ -1,0 +1,8 @@
+-make the app work again with vue
+-add rotation animation to cw ccw
+-add fade delay to turn off
+-slight garbage rotations
+-normalize speed
+-fix the doubles bug
+-get rid of jquery (mostly at least)
+-buttons hover over

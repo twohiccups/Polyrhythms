@@ -3,14 +3,13 @@ body {
     background: linear-gradient(90deg, rgba(154,220,244,0.3547618876652223) 0%, rgba(255,248,232,1) 100%); 
 }
 
-#create {
-    width = 100%;
+.puffy-button {
+    margin-top: 1rem;
     font-family: 'courier';
     font-weight: 600;
     font-size: 2rem;
     background: rgb(255,224,134);
     background: linear-gradient(0deg, rgba(255,224,134,1) 0%, rgba(255,249,244,1) 100%);
-
 }
 
 .fa-plus-square {
@@ -19,7 +18,7 @@ body {
 
 .fa-minus-square {
     color: #BB3333;
-}
+} 
 
 
 .fullWidth {
@@ -34,7 +33,15 @@ body {
     margin-top: inherit;
 }
 
-.col-2 {
+.col-2.track-column {
     margin-bottom: inherit;
     margin-top: inherit;
+}
+
+.inactive-track {
+    opacity: 0.50;
+}
+
+.active-track {
+    opacity: 1.0;
 }

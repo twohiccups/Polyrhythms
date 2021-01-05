@@ -10,6 +10,7 @@ const miniOff = 8;
 
 var rhythms = [];
 var low;
+var currentRhythmInterval = 0;
 
 
 function Beat(radius, isOn, position) {
@@ -166,13 +167,12 @@ function adjustSizes(low) {
 
 
 
-var count;
+var count = 0;
 function update() {
     for (i = 0; i < rhythms.length; i++) {
         rhythms[i].rep.segs[count].miniCircle.setAttribute('fill', 'red');
         rhythms[i].rep.segs[(count - 1 + low) % low].miniCircle.setAttribute('fill', 'black');
-        if(!rhythms[i].muted &&
-           rhythms[i].rep.segs[count].miniCircle.isOn) {
+        if(!rhythms[i].muted && rhythms[i].rep.segs[count].miniCircle.isOn) {
             rhythms[i].audio.currentTime = 0;
             rhythms[i].audio.play();
         }
@@ -180,20 +180,12 @@ function update() {
     count++; 
     count = count % low;
 }
-var interval;
 
 
-function loop() {
-    count = 0;
-    interval = setInterval(update, 250);
-}
-
-
-function setTempo() {
-}
 
 function reset() {
-    clearInterval(interval);
+    clearTimeout(currentRhythmInterval);
+    stop();
     $("#canvas").empty();
     rhythms = [];
     count = 0;
@@ -201,11 +193,36 @@ function reset() {
 
 
 
-function start(values) {
+function initialize(values) {
     reset();
     createPolyrhythm(values);
-    loop();  
+    stop();
+    currentRhythmInterval = setTimeout(start(), 0.2);
 } 
+rhythmLoop = function(){}
+
+function start(val) {
+    loop.play = true;
+    loop();
+}
+
+function stop() {
+    loop.play = false;
+//    interval = 10000000000000000
+}
+
+var interval = 100;
+
+//loop();
+function loop() {
+    update();
+    
+    if (!loop.play) return;
+    else setTimeout(loop, interval);
+}
+
+
+
 
 
 $("#create").on("click", function(){
@@ -215,14 +232,14 @@ $("#create").on("click", function(){
             values.push($(this).val());
         }
     } )
-    start(values);
+//    initialize(values, tempo)
+    initialize(values);
     
 });
 
 
 $('#tempo').change(function () {
-        clearInterval(interval);
-        interval = setInterval(update, $(this).val());
+        interval = $(this).val();
     });
 
     $('#tempo').on('input', function () {
@@ -230,8 +247,8 @@ $('#tempo').change(function () {
     });
 
     $('#stop').click(function () {
-        clearInterval(interval);
-    });
+        stop();
+      });
 
 
 $(".tpicon").on("click", function() {
@@ -291,4 +308,5 @@ $(".instruments").on('change', function () {
         $(".instruments").eq(index).val()
     );
 });
+
 

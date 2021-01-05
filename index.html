@@ -7,9 +7,11 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf3x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@next"></script>
 
 
     <script src="https://kit.fontawesome.com/50f9e90ff6.js"></script>
@@ -19,236 +21,77 @@
 
 
 <body>
+    <div id="app">
+
+        <div class="container my-3">
+            <div class="row mb-3 justify-content-center text-center">
+                
+                <track-controls-component 
+                          v-for="t in tracks" 
+                          :index="t.index" 
+                          :key="t.index" 
+                          :is-active="t.isActive"
+                          :is-mute="t.isMute"
+                          :instrument="t.instrument"       
+                          :beat-number="t.beatNumber"
+                          @switch-active="switchActive"
+                          @changed-beat-number="setBeatNumber"
+                                          >
+                </track-controls-component>
+            </div>
+
+            <div class="row">
+                <div class="col-1 text-center">
+                     <i class="fas fa-3x fa-angle-right"></i>
+                </div>
+                <div class="col-10 text-center">
+                        <input id="tempo" class="fullWidth" type="range" min="30" max="600" value="100" class="slider">
+                </div>
+                <div class="col-1 text-center">
+                    <i class="fas  fa-3x fa-angle-double-right"></i>
+                </div>
+            </div>
 
 
-    <div class="container my-3">
-        <div class="row mb-3 justify-content-center text-center">
-            <div class="col-2">
-                <div class="row">
-                    <div class="col">
-                        <i class="fas fa-plus-square fa-3x tpicon"></i>
-                    </div>
+
+
+            <div class="row mb-1">
+                <div class="col-10">
+                    <button id="create" class="rounded btn-block py-4 puffy-button" @click="createPolyrhythm">Create Polyrythm</button>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <i class="fas fa-drum fa-3x mute"></i>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <select class="form-control-sm fullWidth instruments" id="exampleFormControlSelect2">
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <i class="fas fa-undo-alt fa-3x rotatecc"></i>
-                        <i class="fas fa-redo-alt fa-3x rotate"></i>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <input id="time1" class="form-control" type="number" min="1" max="100" step="1">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <i class="fas fa-trash-alt fa-3x delete"></i>
-                    </div>
+                <div class="col-2">
+                    <button id="stop" class="rounded btn-block py-4 puffy-button">Stop</button>
                 </div>
             </div>
-            <div class="col-2">
-                <div class="row">
-                    <div class="col">
-                        <i class="fas fa-plus-square fa-3x tpicon"></i>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <i class="fas fa-drum fa-3x mute"></i>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <select class="form-control-sm fullWidth instruments" id="exampleFormControlSelect2">
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <i class="fas fa-undo-alt fa-3x rotatecc"></i>
-                        <i class="fas fa-redo-alt fa-3x rotate"></i>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <input id="time1" class="form-control" type="number" min="1" max="100" step="1">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <i class="fas fa-trash-alt fa-3x delete"></i>
-                    </div>
+            <div class="row text-center m-1">
+                <div class="col">
+                    <svg id="canvas" width="1000" height="1000"></svg>
                 </div>
             </div>
-            <div class="col-2">
-                <div class="row">
-                    <div class="col">
-                        <i class="fas fa-plus-square fa-3x tpicon"></i>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <i class="fas fa-drum fa-3x mute"></i>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <select class="form-control-sm fullWidth instruments" id="exampleFormControlSelect2">
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <i class="fas fa-undo-alt fa-3x rotatecc"></i>
-                        <i class="fas fa-redo-alt fa-3x rotate"></i>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <input id="time1" class="form-control" type="number" min="1" max="100" step="1">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <i class="fas fa-trash-alt fa-3x delete"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="row">
-                    <div class="col">
-                        <i class="fas fa-plus-square fa-3x tpicon"></i>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <i class="fas fa-drum fa-3x mute"></i>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <select class="form-control-sm fullWidth instruments" id="exampleFormControlSelect2">
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <i class="fas fa-undo-alt fa-3x rotatecc"></i>
-                        <i class="fas fa-redo-alt fa-3x rotate"></i>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <input id="time1" class="form-control" type="number" min="1" max="100" step="1">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <i class="fas fa-trash-alt fa-3x delete"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="row">
-                    <div class="col">
-                        <i class="fas fa-plus-square fa-3x tpicon"></i>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <i class="fas fa-drum fa-3x mute"></i>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <select class="form-control-sm fullWidth instruments" id="exampleFormControlSelect2">
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <i class="fas fa-undo-alt fa-3x rotatecc"></i>
-                        <i class="fas fa-redo-alt fa-3x rotate"></i>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <input id="time1" class="form-control" type="number" min="1" max="100" step="1">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <i class="fas fa-trash-alt fa-3x delete"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-1 text-center">
-                 <i class="fas fa-3x fa-angle-right"></i>
-            </div>
-            <div class="col-10 text-center">
-                    <input id="tempo" class="fullWidth" type="range" min="30" max="600" value="100" class="slider">
-            </div>
-            <div class="col-1 text-center">
-                <i class="fas  fa-3x fa-angle-double-right"></i>
-            </div>
-        </div>
-      
-        
-        
-        
-        
-        
-        <div class="row mb-1">
-            <div class="col">
-                <button id="create" class="rounded btn-block py-4">Create Polyrythm</button>
-            </div>
-        </div>
-        <div class="row text-center m-1">
-            <div class="col">
-                <svg id="canvas" width="1000" height="1000"></svg>
-            </div>
-        </div>
-        <div class="row text-center">
-            <div class="col">
-                <button id="stop" type="button">Stop</button>
-            </div>
+
         </div>
 
+
+
+        <svg id="canvas" width="800" height="800">
+        </svg>
+        
     </div>
-    
-
-
-    <svg id="canvas" width="800" height="800">
-    </svg>
 
 
 </body>
 <script src="utils.js"></script>
 <script src="instruments.js"></script>
 <script src="polyrithm.js"></script>
+<script src="AppComponent.js"></script>
+<script src="SwitchComponent.js"></script>
+<script src="VolumeComponent.js"></script>
+<script src="InstrumentsComponent.js"></script>
+<script src="RotateRhythmComponent.js"></script>
+<script src="BeatNumberComponent.js"></script>
+<script src="ClearRhythmComponent.js"></script>
+<script src="TrackControlsComponent.js"></script>
+
+<script>const mountApp = app.mount('#app');</script>
 
 </html>
