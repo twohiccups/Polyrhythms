@@ -9,6 +9,10 @@ function gcd(x, y) {
 }
 
 
-function lcm(x, y) {
+function lcm_two(x, y) {
     return x * y / gcd(x, y);
+}
+
+function lcm_array(ar) {
+    return ar.reduce(lcm_two)
 }

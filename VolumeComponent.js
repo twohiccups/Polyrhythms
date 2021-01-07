@@ -1,28 +1,23 @@
 // TODO: add support for volume control
 app.component('volume-component', {
+    props: ['isMute'],
     template: 
     /*html*/
     `
 <div class="row">
     <div class="col" >
-        <i class="fas fa-3x tpicon" :class="volumeIcon" @click="switchRthythm"></i>
+        <i class="fas fa-3x tpicon" :class="volumeIcon" @click="switchMute"></i>
     </div>
 </div>
     `,
-    data() {
-        return {
-            volumeOn: true
-        }
-    },
     computed: {
         volumeIcon() {
-            return this.volumeOn ? 'fa-drum' :  'fa-volume-mute';
+            return this.isMute ? 'fa-volume-mute' : 'fa-drum';
         }
     },
     methods: {
-        switchRthythm() {
-            this.volumeOn = !this.volumeOn
-            this.$emit('vo')
+        switchMute() {
+            this.$parent.$emit('switch-mute', this.$parent.index)
         }
     }
 })

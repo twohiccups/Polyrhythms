@@ -13,16 +13,9 @@ app.component('track-controls-component', {
     <clear-rhythm-component></clear-rhythm-component>
 </div>
     `,
-    data() {
-
-    },
     computed: {
         activeClass() {
             return this.isActive ? 'active-track' : 'inactive-track' 
-        },
-        
-        volumeIcon() {
-            return this.volumeOn ? 'fa-drum' :  'fa-volume-mute';
         }
     },
     methods: {

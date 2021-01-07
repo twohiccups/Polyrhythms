@@ -24,6 +24,3 @@ function makeAudio(x) {
     return new Audio(audiopath + audioFiles[x]);
 }
 
-function suchka() {
-    alert('su')
-}

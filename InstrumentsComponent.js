@@ -1,13 +1,13 @@
 app.component('instruments-component', {
+    props: ['instrument'],
     template:
         /*html*/
         `
 <div class="row">
     <div class="col">
         <div class="form-group">
-            <select class="form-control-sm fullWidth instruments" id="exampleFormControlSelect2">
-                <option v-for="instrument in instruments">{{instrument.name}}</option>
-
+            <select id="exampleFormControlSelect2" class="form-control-sm fullWidth instruments" :value="instrument" @change="setInstrument" >
+                <option v-for="(file, name) in instruments">{{name}}</option>
             </select>
         </div>
     </div>
@@ -15,70 +15,27 @@ app.component('instruments-component', {
     `,
     data() {
         return {
-            activeInstrument: 'drum',
-            instruments: [
-                {
-                    name: 'drum',
-                    file: "1.wav"
-                },
-                {
-                    name: 'kick',
-                    file: "2.wav"
-                },
-                {
-                    name: 'doom',
-                    file: "doom.wav"
-                },
-                {
-                    name: 'bass',
-                    file: 'bass.wav'
-                },
-                {
-                    name: 'bongo',
-                    file: 'bongo.wav'
-                },
-                {
-                    name: 'bop',
-                    file: 'bop.wav'
-                },
-                {
-                    name: 'clap',
-                    file: 'clap.wav'
-                },
-                {
-                    name: 'cowbell',
-                    file: 'cowbell.wav'
-                },
-                {
-                    name: 'doom',
-                    file: 'doom.wav'
-                },
-                {
-                    name: 'drum',
-                    file: 'drum.mp3'
-                },
-                {
-                    name: 'fart',
-                    file: 'fart.wav'
-                },
-                {
-                    name: 'knife',
-                    file: 'knife.wav'
-                },
-                {
-                    name: 'tick',
-                    file: 'tick.mp3'
-                }
-            ]
+            instruments: {
+                'drum': '1.wav',
+                'kick': '2.wav',
+                'doom': 'doom.wav',
+                'bass': 'bass.wav',
+                'bongo': 'bongo.wav',
+                'bop': 'bop.wav',
+                'clap': 'clap.wav',
+                'cowbell': 'cowbell.wav',
+                'doom': 'doom.wav',
+                'drum 2': 'drum.mp3',
+                'fart': 'fart.wav',
+                'knife': 'knife.wav',
+                'tick': 'tick.mp3'
+            }
         }
     },
-    computed: {
-
-    },
     methods: {
-        setActiveInstrument() {
-            this.volumeOn = !this.volumeOn
-            this.$emit('vo')
+        setInstrument(event) {
+            const name = event.target.value
+            this.$parent.$emit('changed-instrument', this.$parent.index, name, this.instruments[name])
         }
     }
 })

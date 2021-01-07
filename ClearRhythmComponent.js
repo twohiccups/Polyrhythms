@@ -16,7 +16,7 @@ app.component('clear-rhythm-component', {
     },
     methods: {
         clearRhythm() {
-            alert('cleared')
+            this.$parent.$emit('clear-rhythm', this.$parent.index)
         }
     }
 })

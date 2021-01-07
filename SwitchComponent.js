@@ -9,8 +9,6 @@ app.component('switch-component', {
     </div>
 </div>
     `,
-    data() {
-    },
     computed: {
         rhythmIcon() {
             return this.isActive ? 'fa-plus-square' : 'fa-minus-square';

@@ -10,8 +10,6 @@ app.component('beat-number-component', {
         </div>
 </div>
     `,
-    data() {
-    },
     computed: {
     },
     methods: {

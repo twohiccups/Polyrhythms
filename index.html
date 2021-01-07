@@ -15,6 +15,7 @@
 
 
     <script src="https://kit.fontawesome.com/50f9e90ff6.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js"></script>
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -25,7 +26,6 @@
 
         <div class="container my-3">
             <div class="row mb-3 justify-content-center text-center">
-                
                 <track-controls-component 
                           v-for="t in tracks" 
                           :index="t.index" 
@@ -35,46 +35,36 @@
                           :instrument="t.instrument"       
                           :beat-number="t.beatNumber"
                           @switch-active="switchActive"
+                          @switch-mute="switchMute"
+                          @clear-rhythm="clearRhythm"
                           @changed-beat-number="setBeatNumber"
-                                          >
+                          @changed-instrument="setInstrument">
                 </track-controls-component>
             </div>
-
             <div class="row">
-                <div class="col-1 text-center">
-                     <i class="fas fa-3x fa-angle-right"></i>
-                </div>
-                <div class="col-10 text-center">
-                        <input id="tempo" class="fullWidth" type="range" min="30" max="600" value="100" class="slider">
-                </div>
-                <div class="col-1 text-center">
-                    <i class="fas  fa-3x fa-angle-double-right"></i>
-                </div>
+                <tempo-component></tempo-component>
             </div>
 
-
-
+            
 
             <div class="row mb-1">
                 <div class="col-10">
-                    <button id="create" class="rounded btn-block py-4 puffy-button" @click="createPolyrhythm">Create Polyrythm</button>
+                    <button id="create" class="rounded btn-block py-4 puffy-button" @click="create">Create Polyrythm</button>
                 </div>
                 <div class="col-2">
-                    <button id="stop" class="rounded btn-block py-4 puffy-button">Stop</button>
+                    <button id="stop" class="rounded btn-block py-4 puffy-button" @click="stopPolyrhythm">Stop</button>
                 </div>
+            </div>
+            <div class="row">
+                <circle-component :circles="circles" @toggle-beat="toggleBeat"></circle-component>
             </div>
             <div class="row text-center m-1">
                 <div class="col">
-                    <svg id="canvas" width="1000" height="1000"></svg>
                 </div>
             </div>
 
         </div>
 
-
-
-        <svg id="canvas" width="800" height="800">
-        </svg>
         
     </div>
 
@@ -91,6 +81,8 @@
 <script src="BeatNumberComponent.js"></script>
 <script src="ClearRhythmComponent.js"></script>
 <script src="TrackControlsComponent.js"></script>
+<script src="RhythmCircleComponent.js"></script>
+<script src="TempoComponent.js"></script>
 
 <script>const mountApp = app.mount('#app');</script>
 
