@@ -5,8 +5,8 @@ app.component('rotate-rhythm-component', {
     `
 <div class="row">
     <div class="col">
-        <i class="fas fa-undo-alt fa-3x rotatecc" @click="rotatecc"></i>
-        <i class="fas fa-redo-alt fa-3x rotate"  @click="rotate"></i>
+        <i class="fas fa-undo-alt fa-3x rotatecc" @click="rotateCCW"></i>
+        <i class="fas fa-redo-alt fa-3x rotate"  @click="rotateCW"></i>
     </div>
 </div>
     `,
@@ -21,11 +21,11 @@ app.component('rotate-rhythm-component', {
         }
     },
     methods: {
-        rotate() {
-            alert('ro')
+        rotateCW() {
+           this.$parent.$emit('rotate-cw', this.$parent.index)
         },
-        rotatecc() {
-            alert('roCC')
+        rotateCCW() {
+           this.$parent.$emit('rotate-ccw', this.$parent.index)
         }
     }
 })

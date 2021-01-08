@@ -39,6 +39,7 @@ const app = Vue.createApp({
                 }
             ],
             circles: [],
+            currentBeatIndex: 0,
             createPolyrhythmTrigger: 0,
             stop: false,
             audiopath: 'samples/'
@@ -69,9 +70,25 @@ const app = Vue.createApp({
             this.tracks[index].instrument = name
             alert(file)
         },
-        toggleBeat(rthythmIndex, beatIndex) {
-            rhythmIndex = 0
-            this.circles[beatIndex].x = 666
+        rotateCCW(trackIndex){
+            const firstIsOn = this.circles[trackIndex][0].isOn
+            for (i = 0; i < this.lcm - 1; i++) {
+                this.circles[trackIndex][i].isOn = this.circles[trackIndex][i + 1].isOn
+            }
+            this.circles[trackIndex][this.lcm - 1].isOn = firstIsOn
+        },
+        rotateCW(trackIndex) {
+            const lastIsOn = this.circles[trackIndex][this.lcm - 1].isOn;
+            for (i = this.lcm - 1; i > 0; i--) {
+                this.circles[trackIndex][i].isOn = this.circles[trackIndex][i - 1].isOn
+            }
+            this.circles[trackIndex][0].isOn = lastIsOn
+        },
+        toggleBeat(trackIndex, beatIndex) {
+            const isOn = this.circles[trackIndex][beatIndex].isOn
+            this.circles[trackIndex][beatIndex].isOn = !isOn
+            
+            this.circles[trackIndex][beatIndex].r = 66;
         },
         create() {
             radius = 100
@@ -80,53 +97,63 @@ const app = Vue.createApp({
             this.circles = []
 
             this.activeTracks.forEach((t) => {
-                console.log(this.activeTracks)
                 var circle = []
                 for (i = 0; i < this.lcm; i++) {
-
                     const isOn = i % t.beatNumber == 0
-                    console.log(t)
-                    console.log(t.beatNumber)
-                    console.log(i)
                     circle.push({
                         index: i,
+                        trackIndex: t.index,
                         isOn: isOn,
-                        cx: centerX - radius * Math.sin(2 * i / this.lcm * Math.PI),
+                        cx: centerX + radius * Math.sin(2 * i / this.lcm * Math.PI),
                         cy: centerY - radius * Math.cos(2 * i / this.lcm * Math.PI),
-                        r: isOn ? 20 : 10
+                        r: isOn ? 20 : 10,
+                        isCurrent: i == 0
                     })
                 }
                 radius *= 2
                 this.circles.push(circle)
 
             })
+            
+            
+            
+            // repeated event every 8th note
+            Tone.Transport.scheduleRepeat((time) => {
+                this.update()
+                
+                this.circles.forEach((c) => {
+                    if (c[this.currentBeatIndex].isOn)
+                        {
+                                            kick.trigger(time)
+
+                        }
+                })
+            }, "8n");
+            // transport must be started before it starts invoking events
+            Tone.Transport.start();
 
         },
         createPolyrhythm() {
-            this.reset();
-            createPolyrhythm(this.activeTracks, this.lcm);
-            this.stop = true;
-            this.currentIntervalId = setTimeout(this.start(this.lcm), 0.4);
+//            this.reset();
+//            createPolyrhythm(this.activeTracks, this.lcm);
+//            this.stop = true;
+//            this.currentIntervalId = setTimeout(this.start(this.lcm), 0.4);
         },
-        clearRhythm(index) {
-            alert('cleared')
-            var draw = SVG().addTo('#canvas');
-            var rect = draw.rect(100, 100).fill('#f88')
-
+        clearRhythm(trackIndex) {
+            for (i = 0; i < this.lcm; i++)
+            this.circles[trackIndex][i].isOn = false
         },
-
-        update(low) {
-            for (i = 0; i < rhythms.length; i++) {
-                console.log(rhythms)
-                rhythms[i].rep.segs[count].miniCircle.setAttribute('fill', 'red');
-                rhythms[i].rep.segs[(count - 1 + low) % low].miniCircle.setAttribute('fill', 'black');
-                if (!rhythms[i].muted && rhythms[i].rep.segs[count].miniCircle.isOn) {
-                    rhythms[i].audio.currentTime = 0;
-                    rhythms[i].audio.play();
-                }
-            }
-            count++;
-            count = count % low;
+        update() {
+//            this.currentBeatIndex = (this.currentBeatIndex + 1) % this.lcm
+            
+            const nextBeat = (this.currentBeatIndex + 1) % this.lcm
+            this.circles.forEach((c) => {
+                c[this.currentBeatIndex].isCurrent = false
+                c[nextBeat].isCurrent = true
+            })
+            this.currentBeatIndex = nextBeat
+            
+            
         },
         loop(low) {
             update(low);

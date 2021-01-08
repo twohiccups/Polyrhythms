@@ -16,7 +16,6 @@ app.component('switch-component', {
     },
     methods: {
         switchActive() {
-            alert(this.$index)
             this.$parent.$emit('switch-active', this.$parent.index);
         }
     }

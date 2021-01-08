@@ -1,8 +1,15 @@
+* FUNCT
 -make the app work again with vue
--add rotation animation to cw ccw
--add fade delay to turn off
--slight garbage rotations
 -normalize speed
--fix the doubles bug
 -get rid of jquery (mostly at least)
+
+* BUGS
+- rotate breaks if track numbers not in order (1,2,4)
+
+* ANIMATION
 -buttons hover over
+-slight garbage rotations
+-add fade delay to turn off
+-add rotation animation to cw ccw
+
+

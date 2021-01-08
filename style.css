@@ -45,3 +45,9 @@ body {
 .active-track {
     opacity: 1.0;
 }
+
+.blue {
+    background-color: blue;
+    stroke-width: 3;
+    fill: red; 
+}

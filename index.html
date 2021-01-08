@@ -16,6 +16,7 @@
 
     <script src="https://kit.fontawesome.com/50f9e90ff6.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.75/Tone.js" integrity="sha512-WRNJatjK302xMf1E7cAmjtR+9xbFL68U1+rVV/8zRGRB2laKMlxFy+75AnceYd6QocIUc8LuW/wC26jsmr1K9Q==" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -36,6 +37,8 @@
                           :beat-number="t.beatNumber"
                           @switch-active="switchActive"
                           @switch-mute="switchMute"
+                          @rotate-cw="rotateCW"
+                          @rotate-ccw="rotateCCW"
                           @clear-rhythm="clearRhythm"
                           @changed-beat-number="setBeatNumber"
                           @changed-instrument="setInstrument">
@@ -56,7 +59,7 @@
                 </div>
             </div>
             <div class="row">
-                <circle-component :circles="circles" @toggle-beat="toggleBeat"></circle-component>
+                <circle-component :circles="circles" :current-beat-index="currentBeatIndex" @toggle-beat="toggleBeat"></circle-component>
             </div>
             <div class="row text-center m-1">
                 <div class="col">
