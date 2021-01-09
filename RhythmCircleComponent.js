@@ -1,21 +1,19 @@
 // TODO: add support for volume control
 app.component('circle-component', {
-    props: ['circles', 'lcm'],
+    props: ['activeTracks', 'lcm'],
     template: 
     `
-
     <svg :height="height" :width="width">
-        <template v-for="c in circles">
-       
-        <circle v-for="beat in c" 
-            :cx="beat.cx"   
-            :cy="beat.cy" 
-            :r="getBeatRadius(beat.isOn)"
-            :index="beat.index"
-            :track-index="beat.trackIndex" 
-            @click="toggleBeat(beat.index, beat.trackIndex)" 
-            stroke="black" stroke-width="3"  
-            :fill="beat.isCurrent ? 'red' : 'black'" />
+        <template v-for="track in activeTracks">
+            <circle v-for="beat in track.beats" 
+                :cx="beat.cx"   
+                :cy="beat.cy" 
+                :r="getBeatRadius(beat.isOn)"
+                :index="beat.index"
+                :track-index="beat.trackIndex" 
+                @click="toggleBeat(beat.index, beat.trackIndex)" 
+                stroke="black" stroke-width="3"  
+                :fill="beat.isCurrent ? 'red' : 'black'" />
         </template>
 
     </svg> 

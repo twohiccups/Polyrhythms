@@ -55,12 +55,12 @@
                     <button id="create" class="rounded btn-block py-4 puffy-button" @click="create">Create Polyrythm</button>
                 </div>
                 <div class="col-2">
-                    <button id="stop" class="rounded btn-block py-4 puffy-button" @click="stopPolyrhythm">Stop</button>
+                    <button id="stop" class="rounded btn-block py-4 puffy-button" @click="pausePolyrhythm">{{isPaused ? 'Resume' : 'Pause'}}</button>
                 </div>
             </div>
             <div class="row">
                 <circle-component 
-                                  :circles="circles" 
+                                  :active-tracks="activeTracks" 
                                   :current-beat-index="currentBeatIndex" 
                                   :lcm="lcm"
                                   @toggle-beat="toggleBeat"></circle-component>
