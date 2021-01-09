@@ -114,22 +114,9 @@ var kick = new Kick(context)
 
 
 var now = context.currentTime
-kick.trigger(now)
+//kick.trigger(now)
 
-var snare = new Snare(context)
+//var snare = new Snare(context)
 //var hiHat = new HiHat(context, snare.noiseBuffer)
-snare.trigger(now + 1)
+//snare.trigger(now + 1)
 
-var su = {
-    take(time) {console.log('0')},
-    book() {}
-}
-
-su.prototype = {
-        take(time) {console.log('0')},
-    book() {}
-
-    
-}
-
-su.take(30)

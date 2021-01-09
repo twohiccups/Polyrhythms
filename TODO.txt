@@ -5,11 +5,13 @@
 
 * BUGS
 - rotate breaks if track numbers not in order (1,2,4)
+-moving from 4,3 to 4, 9 and back gives an error 
 
 * ANIMATION
 -buttons hover over
 -slight garbage rotations
 -add fade delay to turn off
 -add rotation animation to cw ccw
+-track muted different color?
 
 

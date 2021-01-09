@@ -59,7 +59,11 @@
                 </div>
             </div>
             <div class="row">
-                <circle-component :circles="circles" :current-beat-index="currentBeatIndex" @toggle-beat="toggleBeat"></circle-component>
+                <circle-component 
+                                  :circles="circles" 
+                                  :current-beat-index="currentBeatIndex" 
+                                  :lcm="lcm"
+                                  @toggle-beat="toggleBeat"></circle-component>
             </div>
             <div class="row text-center m-1">
                 <div class="col">

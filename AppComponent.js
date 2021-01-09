@@ -38,7 +38,8 @@ const app = Vue.createApp({
                     beatNumber: 4
                 }
             ],
-            circles: [],
+            circles: null,
+            firstTimeInitialization: true,
             currentBeatIndex: 0,
             createPolyrhythmTrigger: 0,
             stop: false,
@@ -87,14 +88,17 @@ const app = Vue.createApp({
         toggleBeat(trackIndex, beatIndex) {
             const isOn = this.circles[trackIndex][beatIndex].isOn
             this.circles[trackIndex][beatIndex].isOn = !isOn
-            
-            this.circles[trackIndex][beatIndex].r = 66;
+        },
+        reset() {
+            Tone.Transport.stop();
+            this.currentBeatIndex = 0
+            this.circles = []
         },
         create() {
+            this.reset()
             radius = 100
             const centerX = 500
             const centerY = 500
-            this.circles = []
 
             this.activeTracks.forEach((t) => {
                 var circle = []
@@ -106,7 +110,6 @@ const app = Vue.createApp({
                         isOn: isOn,
                         cx: centerX + radius * Math.sin(2 * i / this.lcm * Math.PI),
                         cy: centerY - radius * Math.cos(2 * i / this.lcm * Math.PI),
-                        r: isOn ? 20 : 10,
                         isCurrent: i == 0
                     })
                 }
@@ -114,24 +117,27 @@ const app = Vue.createApp({
                 this.circles.push(circle)
 
             })
-            
-            
-            
-            // repeated event every 8th note
-            Tone.Transport.scheduleRepeat((time) => {
+            if (this.firstTimeInitialization) {
+                this.initializeTransport();
+                this.firstTimeInitialization = false;
+            }
+    
+            Tone.Transport.start();
+
+        },
+        initializeTransport() {
+                Tone.Transport.scheduleRepeat((time) => {
                 this.update()
                 
                 this.circles.forEach((c) => {
                     if (c[this.currentBeatIndex].isOn)
                         {
-                                            kick.trigger(time)
+                            kick.trigger(time)
 
                         }
                 })
             }, "8n");
-            // transport must be started before it starts invoking events
-            Tone.Transport.start();
-
+            
         },
         createPolyrhythm() {
 //            this.reset();
@@ -144,6 +150,11 @@ const app = Vue.createApp({
             this.circles[trackIndex][i].isOn = false
         },
         update() {
+            
+            console.log(this.lcm)
+
+            
+            
 //            this.currentBeatIndex = (this.currentBeatIndex + 1) % this.lcm
             
             const nextBeat = (this.currentBeatIndex + 1) % this.lcm
@@ -168,13 +179,6 @@ const app = Vue.createApp({
         start(low) {
             loop.play = true;
             loop(low);
-        },
-        reset() {
-            clearTimeout(this.currentIntervalId);
-            this.stop = true;
-            $("#canvas").empty();
-            rhythms = [];
-            count = 0;
         },
         stopPolyrhythm() {
             alert('su')
