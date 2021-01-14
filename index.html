@@ -24,55 +24,57 @@
 
 <body>
     <div id="app">
+        <div v-if="!audioIsFetching">
 
-        <div class="container my-3">
-            <div class="row mb-3 justify-content-center text-center">
-                <track-controls-component 
-                          v-for="t in tracks" 
-                          :index="t.index" 
-                          :key="t.index" 
-                          :is-active="t.isActive"
-                          :is-mute="t.isMute"
-                          :instrument="t.instrument"       
-                          :beat-number="t.beatNumber"
-                          @switch-active="switchActive"
-                          @switch-mute="switchMute"
-                          @rotate-cw="rotateCW"
-                          @rotate-ccw="rotateCCW"
-                          @clear-rhythm="clearRhythm"
-                          @changed-beat-number="setBeatNumber"
-                          @changed-instrument="setInstrument">
-                </track-controls-component>
-            </div>
-            <div class="row">
-                <tempo-component></tempo-component>
-            </div>
-
-            
-
-            <div class="row mb-1">
-                <div class="col-10">
-                    <button id="create" class="rounded btn-block py-4 puffy-button" @click="create">Create Polyrythm</button>
+            <div class="container my-3">
+                <div class="row mb-3 justify-content-center text-center">
+                    <track-controls-component 
+                              v-for="t in tracks" 
+                              :index="t.index" 
+                              :key="t.index" 
+                              :is-active="t.isActive"
+                              :is-mute="t.isMute"
+                              :instruments="instruments"
+                              :beat-number="t.beatNumber"
+                              @switch-active="switchActive"
+                              @switch-mute="switchMute"
+                              @rotate-cw="rotateCW"
+                              @rotate-ccw="rotateCCW"
+                              @clear-rhythm="clearRhythm"
+                              @changed-beat-number="setBeatNumber"
+                              @changed-instrument="setInstrument">
+                    </track-controls-component>
                 </div>
-                <div class="col-2">
-                    <button id="stop" class="rounded btn-block py-4 puffy-button" @click="pausePolyrhythm">{{isPaused ? 'Resume' : 'Pause'}}</button>
+                <div class="row">
+                    <tempo-component></tempo-component>
                 </div>
-            </div>
-            <div class="row">
-                <circle-component 
-                                  :active-tracks="activeTracks" 
-                                  :current-beat-index="currentBeatIndex" 
-                                  :lcm="lcm"
-                                  @toggle-beat="toggleBeat"></circle-component>
-            </div>
-            <div class="row text-center m-1">
-                <div class="col">
-                </div>
-            </div>
 
+
+
+
+
+                <div class="row mb-1">
+                    <div class="col-10">
+                        <button id="create" class="rounded btn-block py-4 puffy-button" @click="create">Create Polyrythm</button>
+                    </div>
+                    <div class="col-2">
+                        <button id="stop" class="rounded btn-block py-4 puffy-button" @click="pausePolyrhythm">{{isPaused ? 'Resume' : 'Pause'}}</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <circle-component 
+                                      :active-tracks="activeTracks" 
+                                      :current-beat-index="currentBeatIndex" 
+                                      :lcm="lcm"
+                                      @toggle-beat="toggleBeat"></circle-component>
+                </div>
+                <div class="row text-center m-1">
+                    <div class="col">
+                    </div>
+                </div>
+
+            </div>
         </div>
-
-        
     </div>
 
 
@@ -81,15 +83,15 @@
 <script src="instruments.js"></script>
 <script src="polyrithm.js"></script>
 <script src="AppComponent.js"></script>
-<script src="SwitchComponent.js"></script>
-<script src="VolumeComponent.js"></script>
-<script src="InstrumentsComponent.js"></script>
-<script src="RotateRhythmComponent.js"></script>
-<script src="BeatNumberComponent.js"></script>
-<script src="ClearRhythmComponent.js"></script>
-<script src="TrackControlsComponent.js"></script>
-<script src="RhythmCircleComponent.js"></script>
-<script src="TempoComponent.js"></script>
+<script src="components/SwitchComponent.js"></script>
+<script src="components/VolumeComponent.js"></script>
+<script src="components/InstrumentsComponent.js"></script>
+<script src="components/RotateRhythmComponent.js"></script>
+<script src="components/BeatNumberComponent.js"></script>
+<script src="components/ClearRhythmComponent.js"></script>
+<script src="components/TrackControlsComponent.js"></script>
+<script src="components/RhythmCircleComponent.js"></script>
+<script src="components/TempoComponent.js"></script>
 
 <script>const mountApp = app.mount('#app');</script>
 

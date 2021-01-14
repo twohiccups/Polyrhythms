@@ -1,7 +1,10 @@
-* FUNCT
--make the app work again with vue
+* FEATURES
+-tempo gradual scaling
+-instruments: learn samples
 -normalize speed
 -get rid of jquery (mostly at least)
+-synthetize more sounds!
+-adding new track doesn't reset the prev
 
 * BUGS
 - rotate breaks if track numbers not in order (1,2,4)

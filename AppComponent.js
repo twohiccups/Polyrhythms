@@ -1,12 +1,41 @@
+function suka() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(false)
+        }, 2000) 
+    });
+}
 const app = Vue.createApp({
+    beforeCreate() {
+        
+    },
+    created() {
+
+        this.instruments = loadInstruments().then(value => {
+            console.log(value)
+            var instruments = {}
+            Object.keys(audioFiles).forEach((key, i) => instruments[key] = value[i]);
+            this.instruments = instruments
+            this.tracks.forEach( 
+                (track) => {track.instrument = this.instruments['drum']})
+        });
+        this.audioIsFetching = false;    
+        
+    },
+    mounted() {
+        
+
+    },
     data() {
         return {
+            instruments: null, 
+            audioIsFetching: true,
             tracks: [
                 {
                     index: 0,
                     isActive: true,
                     isMute: false,
-                    instrument: 'drum',
+                    instrument: null,
                     beatNumber: 4,
                     beats: []
                 },
@@ -14,7 +43,7 @@ const app = Vue.createApp({
                     index: 1,
                     isActive: true,
                     isMute: false,
-                    instrument: 'drum',
+                    instrument: null,
                     beatNumber: 3,
                     beats: []
                 },
@@ -22,7 +51,7 @@ const app = Vue.createApp({
                     index: 2,
                     isActive: false,
                     isMute: false,
-                    instrument: 'drum',
+                    instrument: null,
                     beatNumber: 3,
                     beats: []
                 },
@@ -30,7 +59,7 @@ const app = Vue.createApp({
                     index: 3,
                     isActive: false,
                     isMute: false,
-                    instrument: 'drum',
+                    instrument: null,
                     beatNumber: 4,
                     beats: []
                 },
@@ -38,7 +67,7 @@ const app = Vue.createApp({
                     index: 4,
                     isActive: false,
                     isMute: false,
-                    instrument: 'drum',
+                    instrument: null,
                     beatNumber: 4,
                     beats: []
                 }
@@ -48,6 +77,7 @@ const app = Vue.createApp({
             currentBeatIndex: 0,
             createPolyrhythmTrigger: 0,
             isPaused: false,
+            tempo: 120,
             audiopath: 'samples/',
             activeTracks: [0,1]
         }
@@ -67,9 +97,8 @@ const app = Vue.createApp({
         setBeatNumber(index, number) {
             this.tracks[index].beatNumber = number
         },
-        setInstrument(index, name, file) {
-            this.tracks[index].instrument = name
-            alert(file)
+        setInstrument(index, instrument) {
+            this.tracks[index].instrument = this.instruments[instrument]
         },
         rotateCCW(trackIndex){
             const firstIsOn = this.tracks[trackIndex].beats[0].isOn
@@ -134,7 +163,7 @@ const app = Vue.createApp({
                 this.activeTracks.forEach((track) => {
                     
                     if (!track.isMute && track.beats[this.currentBeatIndex].isOn) {
-                        kick.trigger(time)
+                        track.instrument.trigger(time)
                     }
                 })
             }, "8n");
@@ -148,8 +177,7 @@ const app = Vue.createApp({
             this.activeTracks[trackIndex].beats[i].isOn = false
         },
         update() {
-                 
-                        
+                     
             const nextBeat = (this.currentBeatIndex + 1) % this.lcm
             
             this.activeTracks.forEach((track) => {

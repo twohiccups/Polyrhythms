@@ -23,8 +23,8 @@ app.component('circle-component', {
             trackRadius: 100,
             height: 1000,
             width: 1000,
-            onRadius: 40,
-            offRadius: 20
+            onRadius: 20,
+            offRadius: 10
         }
     },
     computed() { 
