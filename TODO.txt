@@ -1,16 +1,13 @@
 * FEATURES
 -tempo gradual scaling
--instruments: learn samples
+-trim samples so they are aligned 
 -normalize speed
--get rid of jquery (mostly at least)
--synthetize more sounds!
 -adding new track doesn't reset the prev
+-adjustable circle sizes
 
 * BUGS
-- rotate breaks if track numbers not in order (1,2,4)
--moving from 4,3 to 4, 9 and back gives an error 
 
-* ANIMATION
+* ANIMATION (?)
 -buttons hover over
 -slight garbage rotations
 -add fade delay to turn off

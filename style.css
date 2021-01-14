@@ -1,6 +1,6 @@
 body {
-    background: rgb(154,220,244);
-    background: linear-gradient(90deg, rgba(154,220,244,0.3547618876652223) 0%, rgba(255,248,232,1) 100%); 
+    background: rgb(188,184,255);
+    background: linear-gradient(143deg, rgba(188,184,255,0.6) 0%, rgba(140,236,255,0.6) 100%);
 }
 
 .puffy-button {
@@ -23,6 +23,9 @@ body {
 
 .fullWidth {
     width: 100%;
+}
+
+#app {
 }
 
 #tempo {

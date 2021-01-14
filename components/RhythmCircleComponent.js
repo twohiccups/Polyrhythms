@@ -2,7 +2,7 @@
 app.component('circle-component', {
     props: ['activeTracks', 'lcm'],
     template: 
-    `
+`
     <svg :height="height" :width="width">
         <template v-for="track in activeTracks">
             <circle v-for="beat in track.beats" 
@@ -17,7 +17,7 @@ app.component('circle-component', {
         </template>
 
     </svg> 
-    `,
+`,
     data() { 
         return {
             trackRadius: 100,
@@ -26,8 +26,6 @@ app.component('circle-component', {
             onRadius: 20,
             offRadius: 10
         }
-    },
-    computed() { 
     },
     methods: {
         toggleBeat(index, trackIndex) {

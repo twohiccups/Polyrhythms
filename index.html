@@ -45,13 +45,10 @@
                               @changed-instrument="setInstrument">
                     </track-controls-component>
                 </div>
+                
                 <div class="row">
-                    <tempo-component></tempo-component>
+                    <tempo-component :tempo="tempo" @tempo-change="updateTempo"></tempo-component>
                 </div>
-
-
-
-
 
                 <div class="row mb-1">
                     <div class="col-10">
@@ -61,18 +58,15 @@
                         <button id="stop" class="rounded btn-block py-4 puffy-button" @click="pausePolyrhythm">{{isPaused ? 'Resume' : 'Pause'}}</button>
                     </div>
                 </div>
+                
                 <div class="row">
                     <circle-component 
                                       :active-tracks="activeTracks" 
                                       :current-beat-index="currentBeatIndex" 
                                       :lcm="lcm"
-                                      @toggle-beat="toggleBeat"></circle-component>
+                                      @toggle-beat="toggleBeat">
+                    </circle-component>
                 </div>
-                <div class="row text-center m-1">
-                    <div class="col">
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>

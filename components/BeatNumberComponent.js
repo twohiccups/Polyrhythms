@@ -3,15 +3,13 @@ app.component('beat-number-component', {
     props: ['beatNumber'],
     template: 
     /*html*/
-    `
+`
  <div class="row">
         <div class="col">
-            <input id="time1" class="form-control" @change="setBeatNumber" type="number" min="1" max="100" step="1" :value="beatNumber">
+            <input id="time1" class="form-control" @change="setBeatNumber" type="number" min="1" max="1000" step="1" :value="beatNumber">
         </div>
 </div>
-    `,
-    computed: {
-    },
+`,
     methods: {
         setBeatNumber(event) {
             const value = parseInt(event.target.value)

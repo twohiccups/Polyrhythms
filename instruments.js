@@ -16,13 +16,7 @@ const audioFiles = {
 
 var audiopath = "samples/" 
 files = Object.values(audioFiles)
-files = files.map(f => audiopath + f )
-
-
-var kick;
-
-
-
+files = files.map(f => audiopath + f)
 
 
 class Instrument {
@@ -56,18 +50,9 @@ function fetchBuffers() {
 }
 
 async function loadInstruments() {
-    const instruments = await fetchBuffers();
-    
-    
-    
+   const instruments = await fetchBuffers();
    return instruments;
-//        console.log(buffers)
-//    var instruments = {}
-//    Object.keys(audioFiles).forEach((key, i) => instruments[key] = instruments_temp[i]);
-//    console.log(instruments)
-//    instruments['drum'].trigger(context.currentTime)
-//    return instruments
-    
+
 }
 
 

@@ -1,18 +1,7 @@
-function suka() {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(false)
-        }, 2000) 
-    });
-}
 const app = Vue.createApp({
-    beforeCreate() {
-        
-    },
     created() {
 
         this.instruments = loadInstruments().then(value => {
-            console.log(value)
             var instruments = {}
             Object.keys(audioFiles).forEach((key, i) => instruments[key] = value[i]);
             this.instruments = instruments
@@ -21,10 +10,6 @@ const app = Vue.createApp({
         });
         this.audioIsFetching = false;    
         
-    },
-    mounted() {
-        
-
     },
     data() {
         return {
@@ -132,7 +117,6 @@ const app = Vue.createApp({
 
             this.activeTracks.forEach((track) => {
                 var circle = []
-                
                 for (i = 0; i < this.lcm; i++) {
                     const isOn = i % track.beatNumber == 0
                     circle.push({
@@ -159,35 +143,28 @@ const app = Vue.createApp({
         initializeTransport() {
                 Tone.Transport.scheduleRepeat((time) => {
                 this.update()
-                
                 this.activeTracks.forEach((track) => {
                     
                     if (!track.isMute && track.beats[this.currentBeatIndex].isOn) {
                         track.instrument.trigger(time)
                     }
                 })
-            }, "8n");
+            }, "4n");
             
         },
         clearRhythm(trackIndex) {
             this.activeTracks[trackIndex].beats.forEach((beat) => {
                 beat.isOn = false
             })
-            
             this.activeTracks[trackIndex].beats[i].isOn = false
         },
         update() {
-                     
             const nextBeat = (this.currentBeatIndex + 1) % this.lcm
-            
             this.activeTracks.forEach((track) => {
                 track.beats[this.currentBeatIndex].isCurrent = false
                 track.beats[nextBeat].isCurrent = true
             })
-            
             this.currentBeatIndex = nextBeat
-            
-            
         },
         pausePolyrhythm() {
             if (this.isPaused) {
@@ -196,8 +173,12 @@ const app = Vue.createApp({
             else {
                 Tone.Transport.pause()
             }
-            this.isPaused = ! this.isPaused
+            this.isPaused = !this.isPaused
         },
+        updateTempo(newTempo) {
+            this.tempo = newTempo
+            Tone.Transport.bpm.rampTo(this.tempo, 0.01);
+        }
 
 
     }
